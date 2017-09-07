@@ -1,0 +1,11 @@
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\bin\Debug\CustomerManager.exe.config
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\bin\Debug\CustomerDatabase.mdf
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\bin\Debug\CustomerDatabase_log.ldf
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\bin\Debug\CustomerManager.exe
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\bin\Debug\CustomerManager.pdb
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.csprojResolveAssemblyReference.cache
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.mainForm.resources
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.Properties.Resources.resources
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.csproj.GenerateResource.Cache
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.exe
+c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.pdb
