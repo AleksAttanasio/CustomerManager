@@ -42,27 +42,165 @@ namespace CustomerManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO Customers VALUES (@name, @surname, @email, @phone, @company, @city, @address, @refree, @website)";
+            string query = "INSERT INTO Customers VALUES (@name, @surname, @email, @phone, @company, @city, @address, @cap, @refree, @website)";
+            string missingData = "I seguenti campi non sono stati riempiti:\n";
+            bool missingBool = false;
 
-            using (connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
+            // Check if all the fields are empty
+            if (nameTxt.TextLength == 0 && surnameTxt.TextLength == 0 && emailTxt.TextLength == 0 && phoneTxt.TextLength == 0 &&
+                companyTxt.TextLength == 0 && cityTxt.TextLength == 0 && addressTxt.TextLength == 0 && refreeTxt.TextLength == 0 &&
+                websiteTxt.TextLength == 0)
             {
-                connection.Open();
-                command.Parameters.AddWithValue("@name", nameTxt.Text);
-                command.Parameters.AddWithValue("@surname", surnameTxt.Text);
-                command.Parameters.AddWithValue("@email", emailTxt.Text);
-                command.Parameters.AddWithValue("@phone", phoneTxt.Text);
-                command.Parameters.AddWithValue("@company", companyTxt.Text);
-                command.Parameters.AddWithValue("@city", cityTxt.Text);
-                command.Parameters.AddWithValue("@address", addressTxt.Text);
-                command.Parameters.AddWithValue("@refree", refreeTxt.Text);
-                command.Parameters.AddWithValue("@website", websiteTxt.Text);
+                MessageBox.Show("Nessun dato inserito.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                command.ExecuteNonQuery();
+            // Check of blank fields
+            if (nameTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Nome\n";
+                missingBool = true;
+            }
+            if (surnameTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Cognome\n";
+                missingBool = true;
+            }
+            if (emailTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - email\n";
+                missingBool = true;
+            }
+            if (phoneTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Telefono\n";
+                missingBool = true;
+            }
+            if (companyTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Azienda\n";
+                missingBool = true;
+            }
+            if (cityTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Città\n";
+                missingBool = true;
+            }
+            if (addressTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Indirizzo\n";
+                missingBool = true;
+            }
+            if (capTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - CAP\n";
+                missingBool = true;
+            }
+            if (refreeTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Referente\n";
+                missingBool = true;
+            }
+            if (websiteTxt.TextLength == 0)
+            {
+                missingData = missingData + "\t - Website\n";
+                missingBool = true;
+            }
+
+            // If a field is missing show the message
+            if (missingBool)
+            {
+                if (MessageBox.Show(missingData + "\nContinuare?", "Conferma", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using (connection = new SqlConnection(connectionString))
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@name", nameTxt.Text);
+                        command.Parameters.AddWithValue("@surname", surnameTxt.Text);
+                        command.Parameters.AddWithValue("@email", emailTxt.Text);
+                        command.Parameters.AddWithValue("@phone", phoneTxt.Text);
+                        command.Parameters.AddWithValue("@company", companyTxt.Text);
+                        command.Parameters.AddWithValue("@city", cityTxt.Text);
+                        command.Parameters.AddWithValue("@address", addressTxt.Text);
+                        command.Parameters.AddWithValue("@cap", capTxt.Text);
+                        command.Parameters.AddWithValue("@refree", refreeTxt.Text);
+                        command.Parameters.AddWithValue("@website", websiteTxt.Text);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    nameTxt.Text = String.Empty;
+                    surnameTxt.Text = String.Empty;
+                    emailTxt.Text = String.Empty;
+                    phoneTxt.Text = String.Empty;
+                    companyTxt.Text = String.Empty;
+                    cityTxt.Text = String.Empty;
+                    addressTxt.Text = String.Empty;
+                    capTxt.Text = String.Empty;
+                    refreeTxt.Text = String.Empty;
+                    websiteTxt.Text = String.Empty;
+
+                }
+                else
+                {
+                    // user clicked no
+                }
+            }
+            else // if the fields are filled up just add the new customer to the list
+            {
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@name", nameTxt.Text);
+                    command.Parameters.AddWithValue("@surname", surnameTxt.Text);
+                    command.Parameters.AddWithValue("@email", emailTxt.Text);
+                    command.Parameters.AddWithValue("@phone", phoneTxt.Text);
+                    command.Parameters.AddWithValue("@company", companyTxt.Text);
+                    command.Parameters.AddWithValue("@city", cityTxt.Text);
+                    command.Parameters.AddWithValue("@address", addressTxt.Text);
+                    command.Parameters.AddWithValue("@cap", capTxt.Text);
+                    command.Parameters.AddWithValue("@refree", refreeTxt.Text);
+                    command.Parameters.AddWithValue("@website", websiteTxt.Text);
+
+                    command.ExecuteNonQuery();
+                }
+
+                nameTxt.Text = String.Empty;
+                surnameTxt.Text = String.Empty;
+                emailTxt.Text = String.Empty;
+                phoneTxt.Text = String.Empty;
+                companyTxt.Text = String.Empty;
+                cityTxt.Text = String.Empty;
+                addressTxt.Text = String.Empty;
+                capTxt.Text = String.Empty;
+                refreeTxt.Text = String.Empty;
+                websiteTxt.Text = String.Empty;
             }
 
             UpdateMainForm();
+        }
 
+        private void customersGrid_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu menu = new ContextMenu();
+                menu.MenuItems.Add(new MenuItem("Cut"));
+                menu.MenuItems.Add(new MenuItem("Copy"));
+                menu.MenuItems.Add(new MenuItem("Paste"));
+
+                int currentMouseOverRow = customersGrid.HitTest(e.X, e.Y).RowIndex;
+                
+                if (currentMouseOverRow >= 0)
+                {
+                    menu.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+                }
+
+                menu.Show(customersGrid, new Point(e.X, e.Y));
+
+            }
         }
     }
 }
