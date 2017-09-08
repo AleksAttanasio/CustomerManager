@@ -186,21 +186,38 @@ namespace CustomerManager
         {
             if (e.Button == MouseButtons.Right)
             {
-                ContextMenu menu = new ContextMenu();
-                menu.MenuItems.Add(new MenuItem("Cut"));
-                menu.MenuItems.Add(new MenuItem("Copy"));
-                menu.MenuItems.Add(new MenuItem("Paste"));
+                ContextMenuStrip rcMenu = new System.Windows.Forms.ContextMenuStrip();
+                int mousePosition = customersGrid.HitTest(e.X, e.Y).RowIndex;
 
-                int currentMouseOverRow = customersGrid.HitTest(e.X, e.Y).RowIndex;
-                
-                if (currentMouseOverRow >= 0)
+                if (mousePosition >= 0)
                 {
-                    menu.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+                    rcMenu.Items.Add("Cancella").Name = "Cancella";
+                    rcMenu.Items.Add("Modifica").Name = "Modifica";
+                    rcMenu.Items.Add("Dettagli").Name = "Dettagli";
                 }
 
-                menu.Show(customersGrid, new Point(e.X, e.Y));
+                rcMenu.Show(customersGrid, new Point(e.X, e.Y));
+
+                rcMenu.ItemClicked += new ToolStripItemClickedEventHandler(rcMenu_Clicked);
 
             }
         }
+
+        private void rcMenu_Clicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Cancella":
+                    MessageBox.Show("Cancella cliccato");
+                    break;
+                case "Modifica":
+                    MessageBox.Show("Modifica cliccato");
+                    break;
+                case "Dettagli":
+                    MessageBox.Show("Dettagli Cliccato");
+                    break;
+            }
+        }
+
     }
 }
