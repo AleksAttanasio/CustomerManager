@@ -9,3 +9,4 @@ c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerMan
 c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.csproj.GenerateResource.Cache
 c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.exe
 c:\users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.pdb
+C:\Users\aleks\documents\visual studio 2013\Projects\CustomerManager\CustomerManager\obj\Debug\CustomerManager.modifyForm.resources

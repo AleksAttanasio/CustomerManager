@@ -16,6 +16,7 @@ namespace CustomerManager
     {
         SqlConnection connection;
         string connectionString;
+        public int mousePosition = 0;
 
         public mainForm()
         {
@@ -187,7 +188,7 @@ namespace CustomerManager
             if (e.Button == MouseButtons.Right)
             {
                 ContextMenuStrip rcMenu = new System.Windows.Forms.ContextMenuStrip();
-                int mousePosition = customersGrid.HitTest(e.X, e.Y).RowIndex;
+                mousePosition = customersGrid.HitTest(e.X, e.Y).RowIndex;
 
                 if (mousePosition >= 0)
                 {
@@ -211,7 +212,8 @@ namespace CustomerManager
                     MessageBox.Show("Cancella cliccato");
                     break;
                 case "Modifica":
-                    MessageBox.Show("Modifica cliccato");
+                    modifyForm modForm = new modifyForm();
+                    modForm.Show();
                     break;
                 case "Dettagli":
                     MessageBox.Show("Dettagli Cliccato");
